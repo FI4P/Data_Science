@@ -10,7 +10,8 @@ try:
  dataFrame = pd.read_excel(endpoint)
  
  #Retorna os registros encontrados na coluna de sexo;
- sexos = dataFrame["sexo"];
+ sexos = dataFrame["sexo"].values;
+
 
  #Renomeia uma coluna para melhor entendimento dos dados;
  #DataFrame precisa receber as colunas renomeadas, caso contrário não terá efeito.
@@ -25,8 +26,9 @@ try:
  #25%   - 25% são menores ou igual a este valor;
  #50%   - 50% são menores ou igual a este valor;
  #75%   - 75% são menores ou igual a este valor;
- #25%   - Maior valor que ocorre entre os registros;
+ #max   - Maior valor que ocorre entre os registros;
  resumoEstatistico = dataFrame.describe();
+ print(resumoEstatistico)
  
  #Resumo estatistico para variáveis categoricas (Variaveis categotias são aquelas qualitativas e nao quantitativas)
  #Geralmente são consideradas variaveis categoricas aquelas que possuem como tipo object, por isso indicamos que desejamos descrever "object"
@@ -35,7 +37,7 @@ try:
  # Top - Qual categoria mais aparece na coluna;
  # freq - Com qual frequencia determinada categoria aparece;
  resumoEstatisticoCat = dataFrame.describe(include=["object"]);
-
+ print(resumoEstatisticoCat)
  #Descreve de forma organizada todas as categorias existentes na coluna indicada, contabilizando a frequencia em que aparece;
  cargo_count = dataFrame["cargo"].value_counts();
 
@@ -45,6 +47,7 @@ try:
  # 1) Queremos analisar duas empresas, logo precisamos agrupar os valores de acordo com a empresa correspodente.
 
  informacoes_agrupadas_empresa = dataFrame.groupby('empresa');
+ print(informacoes_agrupadas_empresa)
 
  # 2) Tirando a média salarial de cada empresa;
 
